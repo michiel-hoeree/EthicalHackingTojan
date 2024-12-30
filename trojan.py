@@ -5,7 +5,7 @@ import uuid
 import socket
 import platform
 import requests
-
+import subprocess
 
 
 def create_folder(folder_path, commit_message, branch):
@@ -23,7 +23,33 @@ def create_folder(folder_path, commit_message, branch):
         repo.create_file(empty_file_path, commit_message, content, branch=branch)
         print(f"Created folder {folder_path} on branch {branch}.")
 
+def get_Config(access_token, repo_name, folder_path, branch="data"):
+    folder_path = folder_path+"/config.json"
+    headers = {
+        "Authorization": f"token {access_token}"
+    }
+    url = f"https://api.github.com/repos/{repo_name}/contents/{folder_path}?ref={branch}"
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        download_url = response.json().get("download_url")
+        if download_url:
+            file_response = requests.get(download_url)
+            return file_response.json()
+        
 
+def dowload_Module(access_token, repo_name, folder_path,module_name, branch):
+
+    headers = {
+        "Authorization": f"token {access_token}"
+    }
+    url = f"https://api.github.com/repos/{repo_name}/contents/{folder_path}/{module_name}?ref={branch}"
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        download_url = response.json().get("download_url")
+        if download_url:
+            file_response = requests.get(download_url)
+            with open(module_name, "w") as file:
+                    file.write(file_response.text)
 
 
 
@@ -74,14 +100,9 @@ else:
     ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
     BRANCH = "data"
     REPO_NAME = os.getenv('REPO_NAME')
-    FOLDER_PATH = os.getenv('PC_ID')+"/config.json"
-    headers = {
-        "Authorization": f"token {ACCESS_TOKEN}"
-    }
-    url = f"https://api.github.com/repos/{REPO_NAME}/contents/{FOLDER_PATH}?ref={BRANCH}"
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        download_url = response.json().get("download_url")
-        if download_url:
-            file_response = requests.get(download_url)
-            print(file_response.json())
+    FOLDER_PATH = os.getenv('PC_ID')
+
+    modules = get_Config(ACCESS_TOKEN, REPO_NAME, FOLDER_PATH, BRANCH)['modules']
+    for module in modules:
+        dowload_Module(ACCESS_TOKEN, REPO_NAME, "modules",module, "main")
+        subprocess.run(["python", module])
