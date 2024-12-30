@@ -81,9 +81,7 @@ else:
     url = f"https://api.github.com/repos/{REPO_NAME}/contents/{FOLDER_PATH}?ref={BRANCH}"
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
-        # Extract the download URL from the response
         download_url = response.json().get("download_url")
         if download_url:
-            # Fetch the content of the file
             file_response = requests.get(download_url)
             print(file_response.json())
