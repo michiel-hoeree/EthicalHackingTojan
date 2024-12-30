@@ -1,3 +1,3 @@
 {
-	"modules": "none"
+	"modules": "testModule.py"
 }
