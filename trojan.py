@@ -6,6 +6,7 @@ import socket
 import platform
 import requests
 import subprocess
+import sys
 
 
 def create_folder(folder_path, commit_message, branch):
@@ -105,4 +106,4 @@ else:
     modules = get_Config(ACCESS_TOKEN, REPO_NAME, FOLDER_PATH, BRANCH)['modules']
     for module in modules:
         dowload_Module(ACCESS_TOKEN, REPO_NAME, "modules",module, "main")
-        subprocess.run(["python", module])
+        subprocess.run([sys.executable, module])
