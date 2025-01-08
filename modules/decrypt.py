@@ -17,7 +17,7 @@ load_dotenv(dotenv_path='./.env',override=True)
 ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY')            # voor testing heb ik geen env file. daarom kan het zijn dat ik dat manueel moet ingeven
 
 
-if ENCRYPTION_KEY == None:
+if ENCRYPTION_KEY == "":
     ENCRYPTION_KEY = input("input u key").strip().encode()
 
 key = ENCRYPTION_KEY
