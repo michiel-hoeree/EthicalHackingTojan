@@ -20,7 +20,7 @@ def create_folder(folder_path, commit_message, branch):
         print(f"Folder {folder_path} already exists on branch {branch}.")
     except Exception as e:
         # If the folder doesn't exist, create it by creating an empty file
-        content = "{\n\t\"modules\": \"none\"\n}"
+        content = "{\n\t\"modules\": [\"none\"]\n}"
         repo.create_file(empty_file_path, commit_message, content, branch=branch)
         print(f"Created folder {folder_path} on branch {branch}.")
 
