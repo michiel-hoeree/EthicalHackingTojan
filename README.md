@@ -1,4 +1,6 @@
-    
+[github](https://github.com/michiel-hoeree/EthicalHackingTojan)
+
+
 # module 1: enumeration en data storage
 De eerste module dient ook als het controlescript. Dit script gebruikt een .env-bestand voor environment-variabelen. De eerste keer dat dit script wordt uitgevoerd op een computer, zal het een identifier maken voor de computer en een folder aanmaken in mijn GitHub-repository onder die naam. In deze folder staat een JSON-bestand dat nieuwe instructies kan geven aan het controlescript.
 
